@@ -10,9 +10,3 @@ public class DaoFactory {
         return new SellerDaoJDBC(DB.getConnection());
     }
 }
-
-
-/*
-    SELECT seller. *,department.Name as DepName FROM seller INNER JOIN department
-    ON seller.DepartmentId = department.Id WHERE seller.Id = ?
- */

@@ -10,7 +10,7 @@ import java.util.Properties;
 public class DB {
     private static Connection connection = null;
 
-    public static Connection getConnection() throws SQLException {
+    public static Connection getConnection(){
 
         if(connection == null){
             try{

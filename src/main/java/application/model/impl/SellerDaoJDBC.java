@@ -60,6 +60,11 @@ public class SellerDaoJDBC implements SellerDao {
         }
     }
 
+    @Override
+    public List<Seller> findAll() {
+        return null;
+    }
+
     private Department instantiateDepartment(ResultSet resultSet) throws SQLException {
         Department department = new Department();
         department.setId(resultSet.getInt("DepartmentId"));
@@ -78,8 +83,4 @@ public class SellerDaoJDBC implements SellerDao {
         return obj;
     }
 
-    @Override
-    public List<Seller> findAll() {
-        return null;
-    }
 }
