@@ -1,7 +1,10 @@
 package main.java.application;
 
+import main.java.application.model.entities.Department;
+
 public class Run {
     public static void main(String[] args){
-        System.out.println("Running");
+        Department dp = new Department(1, "Books");
+        System.out.println(dp);
     }
 }
