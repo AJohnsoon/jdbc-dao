@@ -14,7 +14,7 @@ import java.util.List;
 
 public class SellerDaoJDBC implements SellerDao {
 
-    private Connection connection;
+    private final Connection connection;
 
     public SellerDaoJDBC(Connection connection){
         this.connection = connection;
@@ -46,19 +46,8 @@ public class SellerDaoJDBC implements SellerDao {
             resultSet = preparedStatement.executeQuery();
 
             if(resultSet.next()){
-                Department department = new Department();
-                department.setId(resultSet.getInt("DepartmentId"));
-                department.setName(resultSet.getString("DepName"));
-
-                Seller obj = new Seller();
-                obj.setId(resultSet.getInt("Id"));
-                obj.setName(resultSet.getString("Name"));
-                obj.setEmail(resultSet.getString("Email"));
-                obj.setBaseSalary(resultSet.getDouble("BaseSalary"));
-                obj.setBirthDate(resultSet.getDate("BirthDate"));
-                obj.setDepartment(department);
-
-                return obj;
+                Department department = instantiateDepartment(resultSet);
+                return instantiateSeller(resultSet, department);
             }
             return null;
         }
@@ -69,6 +58,24 @@ public class SellerDaoJDBC implements SellerDao {
             DB.closeStatement(preparedStatement);
             DB.closeResults(resultSet);
         }
+    }
+
+    private Department instantiateDepartment(ResultSet resultSet) throws SQLException {
+        Department department = new Department();
+        department.setId(resultSet.getInt("DepartmentId"));
+        department.setName(resultSet.getString("DepName"));
+        return department;
+    }
+
+    private Seller instantiateSeller(ResultSet resultSet, Department department) throws SQLException {
+        Seller obj = new Seller();
+        obj.setId(resultSet.getInt("Id"));
+        obj.setName(resultSet.getString("Name"));
+        obj.setEmail(resultSet.getString("Email"));
+        obj.setBaseSalary(resultSet.getDouble("BaseSalary"));
+        obj.setBirthDate(resultSet.getDate("BirthDate"));
+        obj.setDepartment(department);
+        return obj;
     }
 
     @Override
