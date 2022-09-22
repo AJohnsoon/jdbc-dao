@@ -19,8 +19,15 @@ public class Run {
 
         System.out.println("_______FindBuyDepartmentID_________");
         Department dp = new Department(3, null);
-        List<Seller> list = sellerDao.findByDepartment(dp);
-        for (Seller obj: list) {
+        List<Seller> listFindByDepartmentId = sellerDao.findByDepartment(dp);
+        for (Seller obj: listFindByDepartmentId) {
+            System.out.println(obj);
+        }
+
+
+        System.out.println("_______FindAll_________");
+        List<Seller> listFindAll = sellerDao.findAll();
+        for (Seller obj: listFindAll) {
             System.out.println(obj);
         }
     }
