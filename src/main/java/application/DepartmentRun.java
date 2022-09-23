@@ -9,7 +9,7 @@ import java.util.List;
 
 public class DepartmentRun {
     public static void main(String[] args) throws SQLException {
-        DepartmentDao departmentDao = DaoFactory.createDepartamentDao();
+        DepartmentDao departmentDao = DaoFactory.createDepartmentDao();
 
 
         System.out.println("FindById");
