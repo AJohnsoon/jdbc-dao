@@ -2,6 +2,7 @@ package main.java.application.model.impl;
 
 import main.java.application.db.config.DB;
 import main.java.application.db.exceptions.DbException;
+import main.java.application.db.exceptions.DbIntegrityException;
 import main.java.application.model.dao.SellerDao;
 import main.java.application.model.entities.Department;
 import main.java.application.model.entities.Seller;
@@ -62,6 +63,24 @@ public class SellerDaoJDBC implements SellerDao {
 
     @Override
     public void deleteById(Integer id) {
+        PreparedStatement preparedStatement = null;
+        try{
+            preparedStatement = connection.prepareStatement("DELETE FROM seller WHERE Id = ?");
+            preparedStatement.setInt(1, id);
+            int rowsAffected = preparedStatement.executeUpdate();
+            if(rowsAffected > 0){
+                System.out.println("Done! Seller deleted sucess.");
+            }
+            else{
+                System.out.println("Not found id: " +id+ " in database");
+            }
+        }
+        catch (SQLException e){
+                throw new DbException(e.getMessage());
+        }
+        finally {
+            DB.closePreparedStatement(preparedStatement);
+        }
     }
 
     @Override

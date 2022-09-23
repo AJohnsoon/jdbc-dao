@@ -38,8 +38,11 @@ public class Run {
 
         Date date = sdf.parse("27/03/2002");
         System.out.println("_______Insert Seller_________");
-        Seller insertSeller = new Seller(null, "John Teal", "johnt@teste.com", date, 1827.75, dp);
+        Seller insertSeller = new Seller(null, "John Teal 2", "johnt@teste.com", date, 1827.75, dp);
         sellerDao.insert(insertSeller);
         System.out.println("Inserted! New id is: "+ insertSeller.getId());
+
+        System.out.println("________DeleteSeller___________");
+        sellerDao.deleteById(16);
     }
 }
