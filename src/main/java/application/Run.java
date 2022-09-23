@@ -42,6 +42,12 @@ public class Run {
         sellerDao.insert(insertSeller);
         System.out.println("Inserted! New id is: "+ insertSeller.getId());
 
+        System.out.println("_______Update Seller_________");
+        sellerId = sellerDao.findById(17);
+        sellerId.setName("Martha White");
+        sellerId.setEmail("marthawhite@test.com");
+        sellerDao.update(sellerId);
+
         System.out.println("________DeleteSeller___________");
         sellerDao.deleteById(16);
     }
